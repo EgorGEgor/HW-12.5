@@ -11,7 +11,8 @@ SELECT ROUND((SUM(index_length) / (SUM(data_length) + SUM(index_length))) * 100,
 FROM information_schema.tables
 WHERE information_schema.tables.table_schema = 'sakila';
 ```
-![Задание 1](https://github.com/user-attachments/assets/1def974a-dfe3-4a18-a6f8-02367f789270)
+<img width="640" alt="Задание 1" src="https://github.com/user-attachments/assets/227cb00a-7cd1-47e3-b2ce-ea626a424286" />
+
 
 ---
 
@@ -53,8 +54,9 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
                                 -> Single-row index lookup on c using PRIMARY (customer_id=r.customer_id)  (cost=250e-6 rows=1) (actual time=169e-6..183e-6 rows=1 loops=642000)
                             -> Single-row covering index lookup on i using PRIMARY (inventory_id=r.inventory_id)  (cost=250e-6 rows=1) (actual time=100e-6..116e-6 rows=1 loops=642000)
 ```
-![Задание 2 1](https://github.com/user-attachments/assets/b4572076-f70d-43f8-8672-74f0e89cd7ea)
-![Задание 2 2](https://github.com/user-attachments/assets/10b118f6-2430-4373-bc69-42ab4ff30734)
+<img width="639" alt="Задание 2 1" src="https://github.com/user-attachments/assets/b70f7e4a-d0db-4803-a3a6-d19ef56a8976" />
+<img width="639" alt="Задание 2 2" src="https://github.com/user-attachments/assets/e456a09c-1ebc-4553-8dab-24517fe771c2" />
+
 
 
 ---
@@ -89,8 +91,9 @@ GROUP BY concat(c.last_name, ' ', c.first_name);
                     -> Single-row index lookup on c using PRIMARY (customer_id=r.customer_id)  (cost=0.25 rows=1) (actual time=880e-6..898e-6 rows=1 loops=642)
                 -> Single-row covering index lookup on i using PRIMARY (inventory_id=r.inventory_id)  (cost=0.25 rows=1) (actual time=0.0012..0.00122 rows=1 loops=642)
 ```
-![Задание 2 3](https://github.com/user-attachments/assets/5fc5851b-8317-4d12-8f65-e6038b5c913c)
-![Задание 2 4](https://github.com/user-attachments/assets/36ae4001-c915-48d6-8fcb-2eed0531f9a7)
+<img width="640" alt="Задание 2 3" src="https://github.com/user-attachments/assets/ce4055b0-7eab-439b-8f28-df1e34775c67" />
+<img width="640" alt="Задание 2 4" src="https://github.com/user-attachments/assets/00219e32-a9d9-45bc-aca6-3a5c7cb32af2" />
+
 
 
 ---
@@ -115,8 +118,9 @@ GROUP BY CONCAT(c.last_name, ' ', c.first_name);
                     -> Covering index lookup on r using rental_date (rental_date=p.payment_date)  (cost=0.25 rows=1.04) (actual time=890e-6..0.00121 rows=1.01 loops=634)
                 -> Single-row index lookup on c using PRIMARY (customer_id=r.customer_id)  (cost=0.25 rows=1) (actual time=551e-6..566e-6 rows=1 loops=642)
 ```
-![Задание 2 5](https://github.com/user-attachments/assets/da0ed3ac-bc24-41e8-a790-8fbcdc7e4072)
-![Задание 2 6](https://github.com/user-attachments/assets/6165e325-267d-497d-96f4-25d7ed0e7157)
+<img width="640" alt="Задание 2 5" src="https://github.com/user-attachments/assets/2d0cc346-c79c-44e8-a90a-0e529ca915f7" />
+<img width="639" alt="Задание 2 6" src="https://github.com/user-attachments/assets/1301bac5-3dc9-4011-854c-faf1b71fac85" />
+
 
 
 ### Финальная оптимизация запроса
@@ -142,7 +146,6 @@ GROUP BY CONCAT(c.last_name, ' ', c.first_name);
                     -> Single-row index lookup on c using PRIMARY (customer_id=r.customer_id)  (cost=0.25 rows=1) (actual time=724e-6..736e-6 rows=1 loops=634)
                 -> Index lookup on p using payment_index (payment_date=r.rental_date)  (cost=0.254 rows=1.02) (actual time=0.00151..0.00182 rows=1.01 loops=634)
 ```
-![Задание 2 7](https://github.com/user-attachments/assets/b366cb0a-9500-46cc-8457-a7f94845caef)
-
+<img width="640" alt="Задание 2 7" src="https://github.com/user-attachments/assets/cb4d20d3-3533-4190-8b27-fcc10ddffff2" />
 
 ---
